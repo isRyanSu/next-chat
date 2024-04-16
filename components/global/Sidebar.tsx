@@ -2,9 +2,11 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 
-import { MessageSquare, Compass, Settings2 } from 'lucide-react'
+import { MessageSquare, Compass, Settings2, User, LogOut } from 'lucide-react'
+
+import { SignOutButton, SignedIn } from '@clerk/nextjs'
 
 import { Button } from '@/components/ui/button'
 
@@ -12,6 +14,7 @@ import { cn } from '@/lib/utils'
 
 export function Sidebar() {
   const pathname = usePathname()
+  const router = useRouter()
 
   return (
     <aside className="flex h-full w-16 flex-col border-r">
@@ -54,6 +57,30 @@ export function Sidebar() {
           </Button>
         </nav>
         <nav className="flex flex-col items-center gap-2">
+          <SignedIn>
+            <SignOutButton signOutCallback={() => router.push('/welcome')}>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="size-11 text-zinc-500"
+              >
+                <LogOut className="size-6" />
+              </Button>
+            </SignOutButton>
+          </SignedIn>
+          <Button
+            variant={pathname === '/user-profile' ? 'secondary' : 'ghost'}
+            size="icon"
+            className={cn(
+              'size-11 text-zinc-500',
+              pathname === '/user-profile' && 'text-zinc-900',
+            )}
+            asChild
+          >
+            <Link href="/user-profile">
+              <User className="size-6" />
+            </Link>
+          </Button>
           <Button
             variant={pathname === '/settings' ? 'secondary' : 'ghost'}
             size="icon"
