@@ -13,23 +13,35 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^4.29.12",
+    "@prisma/client": "^5.12.1",
+    "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-tabs": "^1.0.4",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "lodash": "^4.17.21",
     "lucide-react": "^0.368.0",
     "next": "14.2.1",
     "react": "^18",
     "react-dom": "^18",
+    "react-markdown": "^9.0.1",
+    "sonner": "^1.4.41",
     "tailwind-merge": "^2.2.2",
     "tailwind-scrollbar-hide": "^1.1.7",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "uuid": "^9.0.1",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.2.2",
     "@commitlint/config-conventional": "^19.2.2",
+    "@tailwindcss/typography": "^0.5.12",
+    "@types/lodash": "^4.17.0",
     "@types/node": "^20.12.7",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/uuid": "^9.0.8",
     "eslint": "^8",
     "eslint-config-next": "14.2.1",
     "eslint-config-prettier": "^9.1.0",
@@ -41,5 +53,8 @@
     "tailwindcss": "^3.4.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
+  },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   }
 }
