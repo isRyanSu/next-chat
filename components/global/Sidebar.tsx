@@ -30,11 +30,11 @@ export function Sidebar() {
       <div className="flex flex-1 flex-col justify-between py-3">
         <nav className="flex flex-col items-center gap-2">
           <Button
-            variant={pathname === '/chat' ? 'secondary' : 'ghost'}
+            variant={pathname.includes('/chat') ? 'secondary' : 'ghost'}
             size="icon"
             className={cn(
               'size-11 text-zinc-500',
-              pathname === '/chat' && 'text-zinc-900',
+              pathname.includes('/chat') && 'text-zinc-900',
             )}
             asChild
           >

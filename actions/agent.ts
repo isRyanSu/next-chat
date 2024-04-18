@@ -2,11 +2,10 @@
 
 import { v4 as uuidv4 } from 'uuid'
 
-import { prisma } from '@/lib/prisma'
-
 import { auth } from '@clerk/nextjs'
-
 import { type ExploreAgent } from '@prisma/client'
+
+import { prisma } from '@/lib/prisma'
 
 export async function addChatAgentFromExploreAgent(
   exploreAgent: ExploreAgent,
@@ -31,19 +30,31 @@ export async function addChatAgentFromExploreAgent(
       }
     }
 
-    await prisma.chatAgent.create({
-      data: {
-        id: uuidv4(),
-        identifier,
-        avatar,
-        title,
-        description,
-        tags,
-        systemRole,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        userId,
-      },
+    await prisma.$transaction(async (prisma) => {
+      const newChatAgent = await prisma.chatAgent.create({
+        data: {
+          id: uuidv4(),
+          identifier,
+          avatar,
+          title,
+          description,
+          tags,
+          systemRole,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          userId,
+        },
+      })
+
+      const newMessage = await prisma.message.create({
+        data: {
+          id: uuidv4(),
+          role: 'system',
+          content: newChatAgent.systemRole,
+          createdAt: new Date(),
+          chatAgentId: newChatAgent.id,
+        },
+      })
     })
 
     return { success: `Agent "${title}" added successfully!` }
