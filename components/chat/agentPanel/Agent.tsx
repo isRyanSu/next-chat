@@ -55,8 +55,8 @@ export function Agent({
       <div
         key={chatAgentId}
         className={cn(
-          'group flex h-fit w-full flex-row items-center justify-start gap-2 rounded-lg py-3 pl-2 pr-4 hover:bg-zinc-200',
-          isCurrentAgent && 'bg-zinc-100',
+          'group flex h-fit w-full flex-row items-center justify-start gap-2 rounded-lg py-3 pl-2 pr-4 hover:bg-zinc-200 dark:hover:bg-zinc-700',
+          isCurrentAgent && 'bg-zinc-100 dark:bg-zinc-800',
         )}
         onClick={handleSelectChatAgent}
       >
@@ -69,7 +69,7 @@ export function Agent({
           />
         </div>
         <div className="flex w-44 flex-col items-start gap-1 overflow-hidden">
-          <h1 className="w-full truncate text-start text-base font-medium text-zinc-900">
+          <h1 className="w-full truncate text-start text-base font-medium text-zinc-900 dark:text-zinc-100">
             {title}
           </h1>
           <p className="w-full truncate text-start text-sm font-normal text-zinc-500">
@@ -79,7 +79,7 @@ export function Agent({
         <DropdownMenuTrigger className="group relative flex flex-1 items-center justify-center outline-none duration-300">
           <EllipsisVertical
             className={cn(
-              'hidden size-8 rounded-lg p-2 hover:bg-zinc-300 group-hover:block',
+              'hidden size-8 rounded-lg p-2 hover:bg-zinc-300 group-hover:block dark:hover:bg-zinc-500',
               menu && 'block',
             )}
           />

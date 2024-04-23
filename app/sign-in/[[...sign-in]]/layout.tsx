@@ -18,14 +18,14 @@ export default function SignInLayout({
       <Header />
       <section className="flex h-full">
         {/* 左侧表单 */}
-        <div className="flex h-full w-1/2 flex-col">
+        <div className="flex h-full w-1/2 flex-col bg-zinc-50 dark:bg-zinc-900">
           <div className="flex h-full items-center justify-center">
             {children}
           </div>
           <Statement />
         </div>
         {/* 右侧插画 */}
-        <div className="flex h-full w-1/2 items-center justify-center bg-zinc-100">
+        <div className="flex h-full w-1/2 items-center justify-center bg-zinc-100 dark:bg-zinc-800">
           <Image
             src="/banners/Copy Writing.svg"
             alt="A illustration of copy writing"

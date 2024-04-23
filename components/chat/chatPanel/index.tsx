@@ -43,7 +43,7 @@ export function ChatPanel() {
   })
 
   return (
-    <section className="relative flex h-full flex-1 flex-col bg-zinc-50">
+    <section className="relative flex h-full flex-1 flex-col bg-zinc-100 dark:bg-zinc-950">
       <Header />
       <Output messages={transformer(messages)} />
       <Input

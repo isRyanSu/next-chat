@@ -36,7 +36,7 @@ export function Search() {
           ref={inputRef}
           type="text"
           placeholder="Search agents and conversations..."
-          className="h-11 pl-10 text-sm text-zinc-500 focus-visible:ring-0 focus-visible:ring-offset-0"
+          className="h-11 bg-zinc-50 pl-10 text-sm text-zinc-900 focus-visible:ring-0 focus-visible:ring-offset-0 dark:bg-zinc-900 dark:text-zinc-100"
           onChange={handleInputChange}
         />
       </div>

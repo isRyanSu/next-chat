@@ -11,7 +11,9 @@ export function AgentList({
 }) {
   return (
     <div className="my-4 flex w-full flex-col gap-8">
-      <h2 className="text-2xl font-semibold text-zinc-900">{title}</h2>
+      <h2 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
+        {title}
+      </h2>
       {agents.length > 0 ? (
         <div className="grid grid-cols-3 gap-4">
           {agents.map((agent) => (

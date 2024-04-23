@@ -46,7 +46,7 @@ function Info({ agent }: { agent: ExploreAgent }) {
   return (
     <div className="flex w-full flex-col items-center gap-4 p-4">
       {/* Avatar */}
-      <div className="flex size-28 items-center justify-center rounded-full bg-zinc-100">
+      <div className="flex size-28 items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-700">
         <Image
           src={`/emojis/${avatar}.webp`}
           height={80}
@@ -55,7 +55,9 @@ function Info({ agent }: { agent: ExploreAgent }) {
         />
       </div>
       {/* Title */}
-      <h1 className="text-center text-2xl font-semibold">{title}</h1>
+      <h1 className="text-center text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
+        {title}
+      </h1>
       {/* Tags */}
       <div className="flex flex-row flex-wrap justify-center gap-2">
         {tags.map((tag) => {
@@ -63,7 +65,7 @@ function Info({ agent }: { agent: ExploreAgent }) {
             <Badge
               key={`${tag}-${Math.random()}`}
               variant="outline"
-              className="h-5 rounded border-none bg-zinc-100 px-2 text-xs font-light capitalize text-zinc-700"
+              className="h-5 rounded border-none bg-zinc-100 px-2 text-xs font-light capitalize text-zinc-700 dark:bg-zinc-700 dark:text-zinc-300"
             >
               {tag}
             </Badge>
@@ -71,7 +73,7 @@ function Info({ agent }: { agent: ExploreAgent }) {
         })}
       </div>
       {/* Description */}
-      <p className="flex-none text-pretty text-center text-sm font-normal text-zinc-700">
+      <p className="flex-none text-pretty text-center text-sm font-normal text-zinc-700 dark:text-zinc-300">
         {description}
       </p>
       {/* Author */}
@@ -99,23 +101,23 @@ function PromptsAndComments({ agent }: { agent: ExploreAgent }) {
 
   return (
     <Tabs defaultValue="prompts" className="p-4">
-      <TabsList className="flex w-full gap-2 bg-transparent">
+      <TabsList className="flex w-full gap-2 bg-transparent dark:bg-transparent">
         <TabsTrigger
           value="prompts"
-          className="rounded-md border-b-2 border-transparent transition-all duration-300 hover:bg-zinc-100 data-[state=active]:rounded-b-none data-[state=active]:border-zinc-900 data-[state=active]:shadow-none data-[state=active]:hover:bg-zinc-100"
+          className="rounded-md border-b-2 border-transparent transition-all duration-300 hover:bg-zinc-100 data-[state=active]:rounded-b-none data-[state=active]:border-zinc-900 data-[state=active]:shadow-none data-[state=active]:hover:bg-zinc-100 dark:hover:bg-zinc-900 dark:data-[state=active]:border-zinc-100 dark:data-[state=active]:hover:bg-zinc-900"
         >
           Prompts
         </TabsTrigger>
         <TabsTrigger
           value="comments"
-          className="rounded-md border-b-2 border-transparent transition-all duration-300 hover:bg-zinc-100 data-[state=active]:rounded-b-none data-[state=active]:border-zinc-900 data-[state=active]:shadow-none data-[state=active]:hover:bg-zinc-100"
+          className="rounded-md border-b-2 border-transparent transition-all duration-300 hover:bg-zinc-100 data-[state=active]:rounded-b-none data-[state=active]:border-zinc-900 data-[state=active]:shadow-none data-[state=active]:hover:bg-zinc-100 dark:hover:bg-zinc-900 dark:data-[state=active]:border-zinc-100 dark:data-[state=active]:hover:bg-zinc-900"
         >
           Comments
         </TabsTrigger>
       </TabsList>
       {/* Prompts */}
       <TabsContent value="prompts">
-        <Markdown className="prose prose-zinc w-[618px] prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg">
+        <Markdown className="prose prose-zinc w-[618px] dark:prose-invert prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg">
           {systemRole}
         </Markdown>
       </TabsContent>

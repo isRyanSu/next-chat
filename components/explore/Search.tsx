@@ -35,7 +35,7 @@ export function Search() {
         ref={inputRef}
         type="text"
         placeholder="Search agent name, description or keywords..."
-        className="h-10 w-full rounded-md bg-zinc-50 pl-10 text-sm text-zinc-700"
+        className="h-10 w-full rounded-md bg-zinc-50 pl-10 text-sm text-zinc-700 dark:text-zinc-300"
         onChange={handleInputChange}
       />
     </div>

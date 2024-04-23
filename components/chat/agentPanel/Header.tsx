@@ -19,8 +19,8 @@ export function Header({ mutate }: { mutate: () => {} }) {
   }
 
   return (
-    <header className="flex h-16 items-center justify-between border-b px-3">
-      <h1 className="text-2xl font-extrabold text-zinc-900">
+    <header className="flex h-16 items-center justify-between border-b border-zinc-200 px-3 dark:border-zinc-800">
+      <h1 className="text-2xl font-extrabold text-zinc-900 dark:text-zinc-100">
         <Link href="/chat">NextChat</Link>
       </h1>
       <Button

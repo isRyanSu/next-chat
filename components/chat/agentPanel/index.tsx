@@ -36,7 +36,7 @@ export function AgentPanel() {
   )
 
   return (
-    <section className="flex h-full w-80 flex-col border-r">
+    <section className="flex h-full w-80 min-w-80 flex-col border-r border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900">
       <Header mutate={mutate} />
       <Search />
       {error ? (

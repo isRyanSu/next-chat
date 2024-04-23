@@ -15,9 +15,9 @@ const AgentInfo = dynamic(() => import('@/components/explore/AgentInfo'), {
 export default function Agent({ agent }: { agent: ExploreAgent }) {
   return (
     <Dialog>
-      <DialogTrigger className="flex cursor-pointer flex-col gap-2 rounded-xl border bg-white p-4 shadow-sm">
+      <DialogTrigger className="flex cursor-pointer flex-col gap-2 rounded-xl border border-zinc-200 bg-zinc-50 p-4 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
         {/* Avatar */}
-        <div className="flex size-14 items-center justify-center rounded-full bg-zinc-100">
+        <div className="flex size-14 items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800">
           <Image
             src={`/emojis/${agent.avatar}.webp`}
             height={44}
@@ -26,11 +26,11 @@ export default function Agent({ agent }: { agent: ExploreAgent }) {
           />
         </div>
         {/* Title */}
-        <h3 className="text-normal h-6 w-full truncate text-start font-medium text-zinc-900">
+        <h3 className="text-normal h-6 w-full truncate text-start font-medium text-zinc-900 dark:text-zinc-100">
           {agent.title}
         </h3>
         {/* Description */}
-        <p className="mb-4 line-clamp-2 flex-none text-pretty text-start text-sm font-normal text-zinc-700">
+        <p className="mb-4 line-clamp-2 flex-none text-pretty text-start text-sm font-normal text-zinc-700 dark:text-zinc-300">
           {agent.description}
         </p>
         {/* Tags */}
@@ -39,7 +39,7 @@ export default function Agent({ agent }: { agent: ExploreAgent }) {
             <Badge
               key={`${agent.identifier}-${tag}-${Math.random()}`}
               variant="outline"
-              className="h-5 rounded border-none bg-zinc-100 px-2 text-xs font-light capitalize text-zinc-700"
+              className="h-5 rounded border-none bg-zinc-100 px-2 text-xs font-light capitalize text-zinc-700 dark:bg-zinc-700 dark:text-zinc-300"
             >
               {tag}
             </Badge>

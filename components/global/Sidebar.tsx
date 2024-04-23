@@ -4,21 +4,29 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 
-import { MessageSquare, Compass, Settings2, User, LogOut } from 'lucide-react'
+import {
+  MessageSquare,
+  Compass,
+  LogOut,
+  User,
+  Book,
+  Settings2,
+} from 'lucide-react'
 
 import { SignOutButton, SignedIn } from '@clerk/nextjs'
 
 import { Button } from '@/components/ui/button'
+import { Separator } from '@/components/ui/separator'
 
 import { cn } from '@/lib/utils'
 
-export function Sidebar() {
+export default function Sidebar() {
   const pathname = usePathname()
   const router = useRouter()
 
   return (
-    <aside className="flex h-full w-16 flex-col border-r">
-      <div className="flex size-16 items-center justify-center border-b">
+    <aside className="flex h-full w-16 flex-col border-r border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900">
+      <div className="flex size-16 items-center justify-center border-b border-zinc-200 dark:border-zinc-800">
         <Image
           src="/logos/icon-anim.webp"
           height={40}
@@ -67,18 +75,29 @@ export function Sidebar() {
                 <LogOut className="size-6" />
               </Button>
             </SignOutButton>
+            <Button
+              variant={pathname === '/user-profile' ? 'secondary' : 'ghost'}
+              size="icon"
+              className={cn(
+                'size-11 text-zinc-500',
+                pathname === '/user-profile' && 'text-zinc-900',
+              )}
+              asChild
+            >
+              <Link href="/user-profile">
+                <User className="size-6" />
+              </Link>
+            </Button>
+            <Separator className="w-1/2 text-zinc-200 dark:text-zinc-800" />
           </SignedIn>
           <Button
-            variant={pathname === '/user-profile' ? 'secondary' : 'ghost'}
+            variant="ghost"
             size="icon"
-            className={cn(
-              'size-11 text-zinc-500',
-              pathname === '/user-profile' && 'text-zinc-900',
-            )}
+            className="size-11 text-zinc-500"
             asChild
           >
-            <Link href="/user-profile">
-              <User className="size-6" />
+            <Link href="https://github.com/isRyanSu/next-chat">
+              <Book className="size-6" />
             </Link>
           </Button>
           <Button
