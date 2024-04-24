@@ -5,7 +5,7 @@ import { Rocket } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 
-export function Starter() {
+export default function Starter() {
   return (
     <section className="flex flex-1 flex-col items-center justify-center bg-zinc-50 dark:bg-zinc-900">
       <Image
@@ -29,10 +29,10 @@ export function Starter() {
           variant="outline"
           className="h-12 bg-zinc-50 text-lg font-normal text-zinc-900 dark:bg-zinc-900 dark:text-zinc-100"
         >
-          <Link href="/sign-in">Sign in</Link>
+          <Link href="/auth/login">Log in</Link>
         </Button>
         <Button asChild className="h-12 text-lg font-normal text-zinc-100">
-          <Link href="/sign-up">
+          <Link href="/auth/register">
             Start Now <Rocket className="ml-2 size-4" />
           </Link>
         </Button>

@@ -2,26 +2,24 @@
 
 import { v4 as uuidv4 } from 'uuid'
 
-import { auth } from '@clerk/nextjs'
 import { type ExploreAgent } from '@prisma/client'
 
 import { prisma } from '@/lib/prisma'
+import { currentUser } from '@/lib/auth'
 
 export async function addChatAgentFromExploreAgent(
   exploreAgent: ExploreAgent,
 ): Promise<{ success?: string; error?: string }> {
   try {
-    const { userId } = auth()
+    const user = await currentUser()
 
-    if (!userId) {
-      return { error: 'Oops! User not found!' }
-    }
+    if (!user) return { error: "Oops! I didn't find you!" }
 
     const { identifier, avatar, title, tags, description, systemRole } =
       exploreAgent
 
     const existingChatAgent = await prisma.chatAgent.findFirst({
-      where: { identifier, userId },
+      where: { identifier, userId: user.id },
     })
 
     if (existingChatAgent) {
@@ -42,7 +40,7 @@ export async function addChatAgentFromExploreAgent(
           systemRole,
           createdAt: new Date(),
           updatedAt: new Date(),
-          userId,
+          userId: user.id,
         },
       })
 

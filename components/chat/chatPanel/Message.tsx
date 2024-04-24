@@ -6,14 +6,11 @@ import Markdown from 'react-markdown'
 import { Clock } from 'lucide-react'
 import { formatDate } from 'date-fns'
 
-import { useUser } from '@clerk/nextjs'
-
 import useChatStore from '@/stores/useChatStore'
 
 import { type Message } from '@/types/message'
 
 export function Message({ message }: { message: Message }) {
-  const { user } = useUser()
   const agent = useChatStore((state) => state.chatAgent)
 
   const { role, content, createdAt } = message
@@ -33,11 +30,7 @@ export function Message({ message }: { message: Message }) {
           </div>
         </div>
         <Image
-          src={
-            role !== 'system' && user?.imageUrl
-              ? user?.imageUrl
-              : '/emojis/exploding-head.webp'
-          }
+          src="/emojis/exploding-head.webp"
           height={40}
           width={40}
           alt="A image of user"

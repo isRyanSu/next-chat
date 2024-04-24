@@ -28,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`flex h-full w-full ${roboto_mono.variable}`}>
         <Provider>
           <Sidebar />

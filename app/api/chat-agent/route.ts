@@ -2,15 +2,17 @@ import { type NextRequest, NextResponse } from 'next/server'
 
 import { v4 as uuidv4 } from 'uuid'
 
-import { auth } from '@clerk/nextjs'
-
 import { prisma } from '@/lib/prisma'
+
+import { auth } from '@/auth'
 
 export async function GET(request: NextRequest) {
   try {
-    const { userId } = auth()
+    const session = await auth()
 
-    if (!userId) return
+    if (!session?.user) return
+
+    const userId = session.user.id
 
     const chatAgents = await prisma.chatAgent.findMany({
       where: {
@@ -20,15 +22,6 @@ export async function GET(request: NextRequest) {
         messages: true,
       },
     })
-
-    if (chatAgents.length === 0) {
-      return NextResponse.json(
-        { error: 'No ChatAgent found!' },
-        {
-          status: 404,
-        },
-      )
-    }
 
     return NextResponse.json(chatAgents, {
       status: 200,
@@ -47,9 +40,11 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const { userId } = auth()
+    const session = await auth()
 
-    if (!userId) return
+    if (!session?.user) return
+
+    const userId = session.user.id
 
     const defaultChatAgent = await prisma.$transaction(async (prisma) => {
       const newChatAgent = await prisma.chatAgent.create({

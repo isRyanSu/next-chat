@@ -1,14 +1,80 @@
-generator client {
-  provider = "prisma-client-js"
-}
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String
+  email         String    @unique
+  emailVerified DateTime?
+  password      String?
+  avatar        String?
+
+  accounts Account[]
+  sessions Session[]
+  agents   ChatAgent[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([provider, providerAccountId])
+}
+
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model VerificationToken {
+  id      String   @id @default(cuid())
+  email   String
+  token   String   @unique
+  expires DateTime
+
+  @@unique([email, token])
+}
+
+model ResetPasswordToken {
+  id      String   @id @default(cuid())
+  email   String
+  token   String   @unique
+  expires DateTime
+
+  @@unique([email, token])
+}
+
 model ExploreAgent {
-  id          String   @id @default(uuid())
+  id          String   @id @default(cuid())
   identifier  String
   avatar      String
   title       String
@@ -21,30 +87,35 @@ model ExploreAgent {
 }
 
 model ChatAgent {
-  id          String    @id @default(uuid())
+  id          String   @id @default(cuid())
   identifier  String
   avatar      String
   title       String
   description String
   tags        String[]
   systemRole  String
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @default(now()) @updatedAt
   userId      String
-  messages    Message[]
+
+  user     User      @relation(fields: [userId], references: [id])
+  messages Message[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
-model Message {
-  id          String    @id @default(cuid())
-  role        Role
-  content     String
-  createdAt   DateTime  @default(now())
-  chatAgent   ChatAgent @relation(fields: [chatAgentId], references: [id])
-  chatAgentId String
-}
-
-enum Role {
+enum MessageRole {
   system
   user
   assistant
+}
+
+model Message {
+  id          String @id @default(cuid())
+  content     String
+  chatAgentId String
+
+  role      MessageRole
+  chatAgent ChatAgent   @relation(fields: [chatAgentId], references: [id])
+
+  createdAt DateTime @default(now())
 }

@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 import Theme from '@/components/global/Theme'
 
-export function Header() {
+export default function Header() {
   return (
     <header className="flex h-16 flex-none items-center border-b border-zinc-200 bg-zinc-50 px-3 dark:border-zinc-800 dark:bg-zinc-900">
       <Link

@@ -2,7 +2,7 @@ import { type Metadata } from 'next'
 
 import { Toaster } from 'sonner'
 
-import { Header } from '@/components/global/Header'
+import Header from '@/components/global/Header'
 
 export const metadata: Metadata = {
   title: 'Explore',

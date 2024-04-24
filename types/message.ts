@@ -1,8 +1,8 @@
-import { type Role } from '@/types/role'
+export type MessageRole = 'system' | 'user' | 'assistant'
 
 export type Message = {
   id: string
-  role: Role
+  role: MessageRole
   content: string
   createdAt: Date
   chatAgentId: string

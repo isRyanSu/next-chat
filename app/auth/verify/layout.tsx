@@ -1,14 +1,17 @@
 import { type Metadata } from 'next'
+
 import Image from 'next/image'
 
-import { Header } from '@/components/global/Header'
-import { Statement } from '@/components/global/Statement'
+import { Toaster } from 'sonner'
+
+import Header from '@/components/global/Header'
+import Statement from '@/components/auth/Statement'
 
 export const metadata: Metadata = {
-  title: 'Sign In',
+  title: 'Verify Email',
 }
 
-export default function SignInLayout({
+export default function VerifyLayout({
   children,
 }: {
   children: React.ReactNode
@@ -16,9 +19,13 @@ export default function SignInLayout({
   return (
     <main className="flex h-full flex-1 flex-col">
       <Header />
-      <section className="flex h-full">
+      <section className="flex h-full bg-zinc-50 dark:bg-zinc-900">
         {/* 左侧表单 */}
-        <div className="flex h-full w-1/2 flex-col bg-zinc-50 dark:bg-zinc-900">
+        <div className="flex h-full w-1/2 flex-col">
+          {/* 以一种优雅的方式提示用户成功/错误信息 */}
+          <div className="relative">
+            <Toaster className="absolute" position="top-center" />
+          </div>
           <div className="flex h-full items-center justify-center">
             {children}
           </div>
@@ -27,8 +34,8 @@ export default function SignInLayout({
         {/* 右侧插画 */}
         <div className="flex h-full w-1/2 items-center justify-center bg-zinc-100 dark:bg-zinc-800">
           <Image
-            src="/banners/Copy Writing.svg"
-            alt="A illustration of copy writing"
+            src="/banners/High Quality Product.svg"
+            alt="A illustration of high quality product"
             width={500}
             height={500}
             priority={true}
