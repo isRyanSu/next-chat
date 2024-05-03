@@ -34,7 +34,7 @@ export function Header() {
           </span>
           <Badge
             variant="secondary"
-            className="rounded bg-zinc-100 p-1 text-xs font-normal leading-3 text-zinc-500 dark:text-zinc-300"
+            className="rounded-md bg-zinc-50 px-2 py-1 text-xs font-normal leading-3 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
           >
             <SiOpenai className="mr-1 size-3 text-zinc-500 dark:text-zinc-300" />
             {model}
